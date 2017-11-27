@@ -1,8 +1,8 @@
 CC	= g++
 LD	= g++
 
-CCFLAGS = -g -O0 `root-config --cflags` -Wall -I./inc -I$(PEV_INC)
-LDFLAGS = -g -O0 `root-config --libs` -Wall -L./lib -L$(PEV_LIB)
+CCFLAGS = `root-config --cflags` -Wall -I$(INC_DIR) -I$(PEV_INC)
+LDFLAGS = `root-config --libs --ldflags` -Wall -L./lib -L$(PEV_LIB)
 
 TOPDIR = .
 SRC_DIR = $(TOPDIR)/src
@@ -21,10 +21,10 @@ PEV_OBJECTS = $(PEV_LIB)/Particle.o $(PEV_LIB)/Event.o $(PEV_LIB)/ParticleTree.o
 all: mixer0 splitter
 
 splitter: $(OBJ_DIR)/splitter.o
-	$(LD) $(LDFLAGS) $< -o $@ 
+	$(LD) -o $@ $< $(LDFLAGS)
 
 mixer0: $(OBJ_DIR)/mixer0.o $(PEV_OBJECTS)
-	$(LD) $(LDFLAGS) $^ -o $@ 
+	$(LD) -o $@ $^ $(LDFLAGS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	mkdir -p $(OBJ_DIR)
