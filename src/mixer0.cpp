@@ -119,13 +119,13 @@ int main(int argc, char **argv)
 				cout << "Particles: " << endl;
 				for(int i=0; i<event->GetNpa(); i++)
 					cout << i << ": " << ((Particle*)event->GetParticle(i))->GetPid() << endl;
-
-				cout << "First particle in event: " << event->GetFirstParticle() << endl;
-				cout << "Getting particle: " << ((particles_vect[rand_part] - event->GetFirstParticle())) << endl;
 				*/
+
+				//cout << "First particle in event: " << event->GetFirstParticle() << endl;
+				//cout << "Getting particle: " << ((particles_vect[rand_part] - event->GetFirstParticle())) << endl;
 				particle = event->GetParticle(particles_vect[rand_part] - event->GetFirstParticle());
 				/*
-				cout << "#Ev: " << ev << ", EVID: " << rand_evid << ", rand_part: " << particles_vect[rand_part] << endl;
+				cout << "In event: " << ev << ", adding particle from event: " << rand_evid << ", particle ID: " << particles_vect[rand_part] << endl;
 					cout << "Adding particle" << endl;
 					cout << "Pid: " << particles_vect[rand_part];
 					cout << " px: " << particle->GetPx() << endl;
@@ -137,6 +137,7 @@ int main(int argc, char **argv)
 				particles_vect.erase(particles_vect.begin() + rand_part);
 				++control;
 				j=j+1;
+				//cout << "Particle " << j << "/" << mult_vect[ev] << endl;
 			}
 			else
 			{

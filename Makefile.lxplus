@@ -1,8 +1,11 @@
 CC	= g++
 LD	= g++
 
-CCFLAGS = `root-config --cflags` -Wall -I$(INC_DIR) -I$(PEV_INC) -I/afs/cern.ch/na49/library/slc4/T49/T49DST/inc
-LDFLAGS = `root-config --libs --ldflags` -Wall -L./lib -L$(PEV_LIB) -L/afs/cern.ch/na49/library/slc4/T49/T49DST/lib -L/afs/cern.ch/na49/library/slc4/lib -lT49DST
+NA49_CCFLAGS = -I/afs/cern.ch/na49/library/slc4/T49/T49DST/inc
+NA49_LDFLAGS = -L/afs/cern.ch/na49/library/slc4/T49/T49DST/lib -L/afs/cern.ch/na49/library/slc4/lib -lT49DST
+
+CCFLAGS = `root-config --cflags` -Wall -I$(INC_DIR) -I$(PEV_INC) $(NA49_CCFLAGS)
+LDFLAGS = `root-config --libs --ldflags` -Wall -L./lib -L$(PEV_LIB) $(NA49_LDFLAGS)
 
 TOPDIR = .
 SRC_DIR = $(TOPDIR)/src
